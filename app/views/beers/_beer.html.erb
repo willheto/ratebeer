@@ -14,4 +14,10 @@
     <%= link_to beer.brewery.name, beer.brewery %>
   </p>
 
+  <% if beer.ratings.any? %>
+    <p>
+      <%= beer.average_rating('Beer') %>
+    </p>
+  <% end %>
+
 </div>
