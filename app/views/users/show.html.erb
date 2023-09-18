@@ -1,0 +1,40 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @user %>
+
+<%= @user.average_rating('User') %>
+
+<p>
+  <strong>Beer clubs</strong>
+  <ul>
+  <% @user.beer_clubs.each do |b| %>
+    <li><%= b.name %></li>
+  <% end %>
+  </ul>
+</p>
+
+<p>
+<strong>Ratings</strong>
+<ul>
+  <% @user.ratings.each do |r| %>
+    <li><%= r.beer.name %> <%= r.score %>
+    <%= link_to 'Delete', rating_path(r), 
+    data: {
+      turbo_method: :delete,
+      confirm: 'Are you sure you want to delete this rating?'
+    } %>
+    
+    
+    </li>
+  <% end %>
+</ul>
+<p>
+
+
+
+<div>
+  <%= link_to "Edit this user", edit_user_path(@user) %> |
+  <%= link_to "Back to users", users_path %>
+
+  <%= button_to "Destroy this user", @user, method: :delete %>
+</div>
